@@ -26,6 +26,7 @@ public class ParcelRepository {
     private DatabaseReference parcelsRef;
 
     public ParcelRepository(Application application) {
+
         ParcelsDatabase database = ParcelsDatabase.getInstance(application);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
