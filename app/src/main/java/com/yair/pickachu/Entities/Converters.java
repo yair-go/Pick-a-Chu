@@ -2,12 +2,16 @@ package com.yair.pickachu.Entities;
 
 import android.location.Location;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import androidx.room.TypeConverter;
 
 /**
  * Created by Yair on 20/01/2020.
  */
 public class Converters {
+
     //region Location
     @TypeConverter
     public static Location stringToLocation(String fromRoom) {
@@ -63,8 +67,9 @@ public class Converters {
     public static int StatusToInetger(Enums.ParcelStatus status) {
         return status.ordinal();
     }
+
     @TypeConverter
-    public static Enums.ParcelWeight getWeigt(String weight){
+    public static Enums.ParcelWeight getWeight(String weight){
         if (weight != "") return Enums.ParcelWeight.valueOf(weight);
         return null;
     }
@@ -73,6 +78,25 @@ public class Converters {
     public static String WeightToString(Enums.ParcelWeight weight ) {
         return weight.name();
 
+    }
+    //endregion
+
+    //region Date
+
+    @TypeConverter
+    public static Date getDate(String shippingDate){
+        try {
+            if (shippingDate != "") return new SimpleDateFormat("dd/MM/yyyy").parse(shippingDate);
+        }
+        catch (Exception e){
+            return null;
+        }
+        return null;
+    }
+
+    @TypeConverter
+    public static String WeightToString(Date shippingDate ) {
+        return new SimpleDateFormat("dd/MM/yyyy").format(shippingDate);
     }
     //endregion
 }

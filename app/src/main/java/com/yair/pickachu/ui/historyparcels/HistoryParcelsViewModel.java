@@ -17,9 +17,12 @@ public class HistoryParcelsViewModel extends AndroidViewModel {
 
     public HistoryParcelsViewModel(@NonNull Application application) {
         super(application);
-        repository = new ParcelRepository(application);
+        repository = new ParcelRepository(getApplication());
         repository.getHistoryParcels();
         allparcels = repository.getAllParcels();
+    }
 
+    public LiveData<List<Parcel>> getAllparcels() {
+        return allparcels;
     }
 }

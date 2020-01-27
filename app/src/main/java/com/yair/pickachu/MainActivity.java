@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+
+       // updateUI(currentUser);
     }
 
     private void updateUI(FirebaseUser user) {
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 Toast.makeText(this, "Hello" + user.getEmail(), Toast.LENGTH_LONG).show();
-                startActivity(new Intent(MainActivity.this,NavActivity.class));
+
                 // ...
             } else {
                 // Sign in failed. If response is null the user canceled the
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mAuth.addAuthStateListener(mAuthStateListener);
+        startActivity(new Intent(MainActivity.this,NavActivity.class));
     }
 
     @Override

@@ -14,13 +14,14 @@ import androidx.room.TypeConverters;
  * Created by Yair on 20/01/2020.
  */
 
-@Database(entities = {Parcel.class}, version = 1)
+@Database(entities = {Parcel.class}, version = 2)
 @TypeConverters({Converters.class})
 public abstract  class ParcelsDatabase extends RoomDatabase {
 
     public abstract ParcelsDao parcelsDao();
 
     private static ParcelsDatabase instance;
+
     public static synchronized ParcelsDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
